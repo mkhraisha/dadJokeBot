@@ -18,10 +18,9 @@ app.message('hi', async ({ say }) => {
   await say(jokeText.attachments[0].text)
 })
 
-const fetchJoke = async () => {
+export const fetchJoke = async () => {
   return (await axios.get('https://icanhazdadjoke.com/slack')).data
 }
-
 ;(async () => {
   await app.start(parseInt(<string>process.env.PORT) || 3000)
 
