@@ -7,7 +7,7 @@
     "test": "jest",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/server.js",
+    "start": "node build/server.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
