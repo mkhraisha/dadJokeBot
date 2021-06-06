@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "tsc": "tsc"
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "author": "",
   "license": "ISC",
