@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "tsc": "./node_modules/typescript/bin/tsc",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "sendDailyJoke": "node -e 'require(\"./build/app.js\").sendDailyJoke()'"
   },
   "author": "",
   "license": "ISC",
