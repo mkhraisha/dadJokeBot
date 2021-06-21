@@ -23,10 +23,17 @@ export const app = new App({
   receiver: expressReceiver
 })
 
-app.command('joke', async ({ say, ack }) => {
+app.command('/joke', async ({ say, ack }) => {
   await ack()
   const jokeText = await fetchJoke()
   await say(jokeText.attachments[0].text)
+})
+
+app.command('/echo', async ({ command, ack, say }) => {
+  // Acknowledge command request
+  await ack()
+
+  await say(`${command.text}`)
 })
 
 export const sendDailyJoke = async (): Promise<void> => {
