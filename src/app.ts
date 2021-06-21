@@ -23,22 +23,18 @@ export const app = new App({
   receiver: expressReceiver
 })
 
-app.message('hi', async ({ say, message }) => {
+app.command('joke', async ({ say, ack }) => {
+  await ack()
   const jokeText = await fetchJoke()
-  console.log(message.channel)
-  await say(jokeText.attachments[0].text)
-})
-
-app.command('joke', async ({ say, command }) => {
-  const jokeText = await fetchJoke()
-  console.log(command.channel)
   await say(jokeText.attachments[0].text)
 })
 
 export const sendDailyJoke = async (): Promise<void> => {
+  const attachments = (await fetchJoke()).attachments
+  attachments.map((attachment) => (attachment.footer = 'Daily Joke'))
   app.client.chat.postMessage({
-    channel: '#dadjokebottest',
-    text: (await fetchJoke()).attachments[0].text
+    channel: <string>process.env.CHANNEL,
+    attachments
   })
 }
 
