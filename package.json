@@ -13,7 +13,8 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "tsc": "./node_modules/typescript/bin/tsc",
     "postinstall": "npm run build",
-    "sendDailyJoke": "node -e 'require(\"./build/app.js\").sendDailyJoke()'"
+    "sendDailyJoke": "node -e 'require(\"./build/app.js\").sendDailyJoke()'",
+    "checkWeekday": "node -e 'require(\"./build/app.js\").checkWeekDay()'"
   },
   "author": "",
   "license": "ISC",

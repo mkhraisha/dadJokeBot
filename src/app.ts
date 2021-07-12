@@ -37,12 +37,20 @@ app.command('/echo', async ({ command, ack, say }) => {
 })
 
 export const sendDailyJoke = async (): Promise<void> => {
-  const attachments = (await fetchJoke()).attachments
-  attachments.map((attachment) => (attachment.footer = 'Daily Joke'))
-  app.client.chat.postMessage({
-    channel: <string>process.env.CHANNEL,
-    attachments
-  })
+  if (checkWeekDay()) {
+    const attachments = (await fetchJoke()).attachments
+    attachments.map((attachment) => (attachment.footer = 'Daily Joke'))
+    app.client.chat.postMessage({
+      channel: <string>process.env.CHANNEL,
+      attachments
+    })
+  }
+}
+
+export const checkWeekDay = (): boolean => {
+  const day = new Date().getDay()
+
+  return 1 >= day && day <= 5
 }
 
 export const fetchJoke = async (): Promise<Joke> => {
