@@ -49,8 +49,11 @@ export const sendDailyJoke = async (): Promise<void> => {
 
 export const checkWeekDay = (): boolean => {
   const day = new Date().getDay()
+  if (process.env.VERBOSE_BUILD) {
+    console.log(`${day} is a ${day >= 1}`)
+  }
 
-  return 1 >= day && day <= 5
+  return day >= 1 && day <= 5
 }
 
 export const fetchJoke = async (): Promise<Joke> => {
